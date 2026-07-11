@@ -1,0 +1,95 @@
+{{ $delay := mul (mod .Weight 8) 0.08 }}
+{{ $rowDelay := mul (div .Weight 8) 0.1 }}
+{{ $totalDelay := add $delay $rowDelay }}
+{{ $id := "no-id" }}
+{{ with .File }}{{ $id = .UniqueID }}{{ end }}
+{{ $tags := "" }}
+{{ with .Params.tags }}{{ $tags = delimit . "," }}{{ end }}
+
+{{/* Audio: use frontmatter if set, otherwise default to <filename>.mp3 */}}
+{{ $audioFile := .Params.audio }}
+{{ $audio := "" }}
+{{ with .File }}
+  {{ if not $audioFile }}{{ $audioFile = printf "%s.mp3" .BaseFileName }}{{ end }}
+  {{ $audio = printf "/prompts/%s" $audioFile }}
+{{ end }}
+{{ $sizeMB := "2.3" }}
+
+<div class="sample-card-container"
+  data-id="{{ $id }}"
+  data-title="{{ .Title }}"
+  data-model="{{ .Params.model | default "" }}"
+  data-language="{{ .Params.language | default "" }}"
+  data-tags="{{ $tags }}"
+  data-nsfw="{{ .Params.metadata.nsfw | default false }}"
+  data-prompt="{{ .Params.metadata.prompt_text | default "" }}"
+  data-duration="{{ .Params.duration | default "" }}"
+  data-url="{{ .RelPermalink }}"
+  data-audio="{{ $audio }}"
+  style="animation: fadeSlideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: {{ $totalDelay }}s;">
+  <article class="original-card group bg-[#0a0a0a] border border-[#1f1f1f] rounded-lg p-4 flex flex-col justify-between cursor-pointer relative z-10">
+    <div class="flex items-start justify-between mb-1">
+      <h3 class="font-body-md text-body-md font-bold text-on-surface truncate pr-2 group-hover:text-white transition-colors">{{ .Title }}</h3>
+      <button class="play-toggle text-on-surface-variant group-hover:text-primary-container transition-colors shrink-0 outline-none flex items-center justify-center bg-[#121212] p-1.5 rounded-full border border-[#1f1f1f] group-hover:border-primary-container group-hover:bg-primary-container/10 group-hover:scale-110 duration-300" data-audio="{{ $audio }}">
+        <svg class="play-icon-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M232.4,114.49,88.32,26.35a16,16,0,0,0-16.2-.3A15.86,15.86,0,0,0,64,39.87V216.13A15.94,15.94,0,0,0,80,232a16.07,16.07,0,0,0,8.36-2.35L232.4,141.51a15.81,15.81,0,0,0,0-27ZM80,215.94V40l143.83,88Z"/></svg>
+        <svg class="pause-icon-svg hidden" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M200,32H160a16,16,0,0,0-16,16V208a16,16,0,0,0,16,16h40a16,16,0,0,0,16-16V48A16,16,0,0,0,200,32Zm0,176H160V48h40ZM96,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V48A16,16,0,0,0,96,32Zm0,176H56V48H96Z"/></svg>
+      </button>
+    </div>
+
+    <!-- Waveform -->
+    {{ partial "waveform.html" (dict "audio" $audio) }}
+
+    <div class="flex items-center justify-between mt-auto pt-2 border-t border-[#1f1f1f]">
+      <span class="font-label-mono text-label-mono text-gray-300 bg-white/[7%] px-1.5 py-0.5 rounded text-[10px]">{{ .Params.model | default "Unknown" }}</span>
+      <span class="font-label-mono text-label-mono text-on-surface-variant text-[10px]">{{ .Params.language | default "??" }}</span>
+      <span class="duration-display font-label-mono text-label-mono text-outline text-[10px]">{{ .Params.duration | default "—" }}</span>
+    </div>
+  </article>
+
+  <!-- Inline Detail Card -->
+  <div class="detail-card">
+    <div class="flex-grow">
+      <span class="text-xs text-on-surface-variant font-bold uppercase tracking-wider mb-2 flex items-center justify-between shrink-0">
+        Recipe
+        <button class="close-card-btn hover:text-white transition-colors" title="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg>
+        </button>
+      </span>
+      <p class="text-sm text-on-surface cursor-pointer hover:text-primary transition-colors mb-2 leading-relaxed prompt-text" title="Click to copy">
+        {{ $words := split (.Params.metadata.prompt_text | default "") " " }}
+        {{ range $i, $word := $words }}
+          <span style="animation-delay: {{ mul $i 0.05 }}s">{{ $word }}&nbsp;</span>
+        {{ end }}
+      </p>
+
+      <div class="mt-3 flex flex-col gap-2 shrink-0">
+        <div class="flex flex-wrap gap-1">
+          {{ range .Params.tags }}
+            <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag font-label-mono text-[10px] bg-white/[7%] border border-white/[12%] text-gray-300 px-1.5 py-0.5 rounded hover:bg-white/[12%] hover:border-primary/40 hover:text-white transition-all">#{{ . }}</a>
+          {{ end }}
+        </div>
+        <div class="grid grid-cols-3 gap-2 mt-1">
+          <div class="flex flex-col">
+            <span class="text-[9px] text-on-surface-variant uppercase tracking-wider">Model</span>
+            <a href="{{ "/models/" | relURL }}{{ .Params.model | urlize }}" class="font-label-mono text-[11px] text-on-surface hover:text-primary transition-colors">{{ .Params.model | default "-" }}</a>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-[9px] text-on-surface-variant uppercase tracking-wider">Top P</span>
+            <span class="font-label-mono text-[11px] text-on-surface">{{ .Params.metadata.top_p | default "0.95" }}</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-[9px] text-on-surface-variant uppercase tracking-wider">Temp</span>
+            <span class="font-label-mono text-[11px] text-on-surface">{{ .Params.metadata.temperature | default "0.8" }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-4 flex items-center justify-between border-t border-[#1f1f1f] pt-2 shrink-0">
+      <span class="text-xs text-on-surface-variant">Size: {{ $sizeMB }}MB</span>
+      <a href="{{ $audio }}" download class="text-xs text-primary hover:text-white hover:scale-105 flex items-center gap-1 transition-all duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256"><path d="M240,136v64a16,16,0,0,1-16,16H32a16,16,0,0,1-16-16V136a8,8,0,0,1,16,0v64H224V136a8,8,0,0,1,16,0Zm-108.24,4.24a8,8,0,0,0,11.32,0l40-40a8,8,0,0,0-11.32-11.32L136,116.69V32a8,8,0,0,0-16,0v84.69L93.66,88.93a8,8,0,0,0-11.32,11.32Z"/></svg>
+        Download
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+{{ $items := slice }}
+{{ range where .Site.RegularPages "Section" "prompts" }}
+  {{ $item := dict
+    "id" .File.UniqueID
+    "title" .Title
+    "model" .Params.model
+    "language" .Params.language
+    "tags" .Params.tags
+    "duration" .Params.duration
+    "url" .RelPermalink
+    "audio" (.Params.audio | default (printf "%s.mp3" .File.BaseFileName))
+  }}
+  {{ with .Params.metadata }}
+    {{ $item = merge $item (dict "nsfw" .nsfw "prompt" .prompt_text) }}
+  {{ end }}
+  {{ $items = $items | append $item }}
+{{ end }}
+{{ $items | jsonify }}

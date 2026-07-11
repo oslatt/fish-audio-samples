@@ -1,0 +1,21 @@
+{{ define "main" }}
+<main class="pt-20 pb-28 px-4 md:px-8 max-w-[1920px] mx-auto w-full">
+  <div class="max-w-2xl mx-auto mb-8 text-center">
+    <h1 class="text-headline-lg font-display font-bold text-on-surface mb-2">{{ .Title }}</h1>
+    <p class="text-on-surface-variant">{{ len .Pages }} categories</p>
+  </div>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5">
+    {{ range .Pages }}
+      <a href="{{ .RelPermalink }}" class="group bg-[#0a0a0a] border border-[#1f1f1f] rounded-lg p-4 flex items-center justify-center hover:border-primary/50 transition-all duration-300">
+        <span class="font-body-md text-body-md font-bold text-on-surface group-hover:text-white transition-colors">{{ .Title }}</span>
+      </a>
+    {{ end }}
+  </div>
+
+  <div id="empty-state" class="hidden flex flex-col items-center justify-center py-20 text-on-surface-variant">
+    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256" class="mb-4 opacity-50"><path d="M232.4,114.49,88.32,26.35a16,16,0,0,0-16.2-.3A15.86,15.86,0,0,0,64,39.87V216.13A15.94,15.94,0,0,0,80,232a16.07,16.07,0,0,0,8.36-2.35L232.4,141.51a15.81,15.81,0,0,0,0-27ZM80,215.94V40l143.83,88Z"/></svg>
+    <p class="text-lg">No categories yet.</p>
+  </div>
+</main>
+{{ end }}

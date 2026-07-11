@@ -1,0 +1,334 @@
+:root {
+  --color-error: #ffb4ab;
+  --color-surface: #0e1513;
+  --color-surface-variant: #2f3634;
+  --color-on-secondary-fixed: #1c1b1b;
+  --color-on-primary-fixed: #00201c;
+  --color-on-surface-variant: #bacac5;
+  --color-surface-dim: #0e1513;
+  --color-outline: #859490;
+  --color-on-tertiary-container: #744000;
+  --color-secondary-fixed: #e5e2e1;
+  --color-tertiary: #ffd1aa;
+  --color-surface-container-low: #161d1b;
+  --color-surface-container-lowest: #09100e;
+  --color-secondary: #c8c6c5;
+  --color-on-error-container: #ffdad6;
+  --color-surface-bright: #333b39;
+  --color-tertiary-fixed-dim: #ffb875;
+  --color-secondary-container: #4a4949;
+  --color-surface-container-highest: #2f3634;
+  --color-surface-container: #1a211f;
+  --color-primary-container: #808080;
+  --color-on-secondary-fixed-variant: #474646;
+  --color-tertiary-fixed: #ffdcc0;
+  --color-on-tertiary-fixed: #2d1600;
+  --color-on-secondary-container: #bab8b7;
+  --color-primary: #a0a0a0;
+  --color-on-primary-fixed-variant: #2a2a2a;
+  --color-background: #0e1513;
+  --color-on-secondary: #313030;
+  --color-error-container: #93000a;
+  --color-surface-tint: #909090;
+  --color-on-background: #dde4e1;
+  --color-inverse-primary: #505050;
+  --color-outline-variant: #3c4a46;
+  --color-on-surface: #dde4e1;
+  --color-surface-container-high: #242b2a;
+  --color-on-tertiary: #4b2800;
+  --color-primary-fixed-dim: #909090;
+  --color-on-error: #690005;
+  --color-inverse-surface: #dde4e1;
+  --color-on-primary: #0e0e0e;
+  --color-secondary-fixed-dim: #c8c6c5;
+  --color-on-tertiary-fixed-variant: #6b3b00;
+  --color-on-primary-container: #1a1a1a;
+  --color-inverse-on-surface: #2b3230;
+  --color-tertiary-container: #ffac5a;
+  --color-primary-fixed: #b0b0b0;
+}
+
+.bg-black { background-color: #000000; }
+.bg-surface { background-color: var(--color-surface); }
+.bg-surface-variant { background-color: var(--color-surface-variant); }
+.bg-surface-container { background-color: var(--color-surface-container); }
+.bg-surface-container-low { background-color: var(--color-surface-container-low); }
+.bg-surface-container-lowest { background-color: var(--color-surface-container-lowest); }
+.bg-surface-container-high { background-color: var(--color-surface-container-high); }
+.bg-surface-container-highest { background-color: var(--color-surface-container-highest); }
+.bg-primary { background-color: var(--color-primary); }
+.bg-primary-container { background-color: var(--color-primary-container); }
+.bg-error { background-color: var(--color-error); }
+.bg-error\/20 { background-color: rgba(255, 180, 171, 0.2); }
+.bg-primary\/5 { background-color: rgba(160, 160, 160, 0.05); }
+
+.text-on-surface { color: var(--color-on-surface); }
+.text-on-surface-variant { color: var(--color-on-surface-variant); }
+.text-primary { color: var(--color-primary); }
+.text-primary-container { color: var(--color-primary-container); }
+.text-error { color: var(--color-error); }
+.text-error-container { color: var(--color-error-container); }
+.text-outline { color: var(--color-outline); }
+.text-black { color: #000000; }
+.text-white { color: #ffffff; }
+
+.border-outline-variant { border-color: var(--color-outline-variant); }
+.border-primary { border-color: var(--color-primary); }
+.border-primary\/50 { border-color: rgba(160, 160, 160, 0.5); }
+.border-error { border-color: var(--color-error); }
+.border-error\/30 { border-color: rgba(255, 180, 171, 0.3); }
+
+/* Fish Audio Brand Font: Onest */
+.font-display { font-family: 'Onest', sans-serif; }
+.font-body-md { font-family: 'Onest', sans-serif; }
+.font-label-mono { font-family: 'Onest', sans-serif; }
+
+/* Display headline - Onest ExtraBold */
+.text-display {
+  font-family: 'Onest', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+/* Headline - Onest Bold */
+.text-headline-lg {
+  font-family: 'Onest', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Body - Onest Regular */
+.text-body-md {
+  font-family: 'Onest', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Label - Onest Medium, uppercase, tracked */
+.text-label-mono {
+  font-family: 'Onest', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f1f1f;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #808080;
+}
+
+/* Waveform */
+.waveform-bar {
+  width: 2px;
+  background-color: #1f1f1f;
+  border-radius: 1px;
+  transition: height 0.2s ease, background-color 0.2s ease;
+}
+.group:hover .waveform-bar.active {
+  background-color: #808080;
+}
+.playhead {
+  width: 2px;
+  background-color: #ffffff;
+  box-shadow: 0 0 4px #808080;
+  position: absolute;
+  left: 30%;
+  height: 100%;
+  z-index: 10;
+}
+
+/* Interaction Styles - body dimmed backdrop */
+body.dimmed::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 30;
+  pointer-events: auto;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+}
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  z-index: 30;
+  pointer-events: none;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+}
+
+/* Animations */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes typeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card styles */
+.sample-card-container {
+  position: relative;
+  z-index: 20;
+  transition: z-index 0s 0.3s;
+  height: 100%;
+  opacity: 0;
+}
+
+.sample-card-container.active {
+  z-index: 40;
+  transition: z-index 0s 0s;
+}
+
+.original-card {
+  height: 100%;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.sample-card-container:not(.active) .original-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 30px -10px rgba(128, 128, 128, 0.15);
+  border-color: rgba(128, 128, 128, 0.3);
+}
+
+/* Detail Card - inline expanding from card */
+.detail-card {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  overflow-y: auto;
+  background-color: #0a0a0a;
+  border: 1px solid #1f1f1f;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  opacity: 0;
+  transform: translateY(-20px) scale(0.95);
+  transform-origin: top center;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+}
+
+.sample-card-container.active .detail-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  box-shadow: 0 0 0 1px #808080, 0 30px 60px -12px rgba(0, 0, 0, 0.8);
+}
+
+.sample-card-container.active .original-card {
+  box-shadow: 0 0 0 1px #808080, 0 20px 40px -10px rgba(0,0,0,0.5);
+  transform: scale(1.02);
+}
+
+/* Prompt text word animation */
+.prompt-text span {
+  opacity: 0;
+  display: inline-block;
+}
+.sample-card-container.active .prompt-text span {
+  animation: typeIn 0.3s ease forwards;
+}
+
+/* Playing state */
+.playing .original-card {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 20px rgba(128, 128, 128, 0.2);
+}
+
+/* Filter chip active */
+.filter-chip.active {
+  border-color: rgba(255,255,255,0.3);
+  color: #fff;
+  background-color: rgba(255,255,255,0.1);
+}
+
+/* Copied toast */
+.copied-toast {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  padding: 3px 8px;
+  font-size: 10px;
+  line-height: 1.4;
+  font-family: 'Onest', sans-serif;
+  color: #d1d5db;
+  background: #1f1f1f;
+  border: 1px solid #333;
+  border-radius: 4px;
+  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.copied-toast.fade-out {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+/* Selection */
+.selection\:bg-primary-container::selection {
+  background-color: var(--color-primary-container);
+}
+.selection\:text-black::selection {
+  color: #000000;
+}
+
+/* Utility overrides */
+.hidden { display: none !important; }
+
+/* Responsive headline */
+@media (max-width: 768px) {
+  .text-headline-lg {
+    font-size: 24px;
+  }
+  .text-display {
+    font-size: 36px;
+  }
+}

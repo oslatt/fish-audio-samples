@@ -1,0 +1,18 @@
+baseURL = 'https://fish-audio-prompts.example.com'
+locale = 'en-us'
+title = 'Fish Audio Prompt Library'
+theme = 'acoustic-darkroom'
+
+[taxonomies]
+  tag = 'tags'
+  model = 'models'
+  language = 'languages'
+
+[params]
+  description = 'A community-driven prompt library for FishSpeech TTS models. Search, filter, and discover voice prompts by emotion, language, and model.'
+  author = 'Fish Audio Community'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

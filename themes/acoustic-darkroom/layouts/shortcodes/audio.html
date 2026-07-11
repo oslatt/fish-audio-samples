@@ -1,0 +1,12 @@
+{{/* Shortcode: audio. Usage: {{< audio src="sample.wav" >}} */}}
+<div class="audio-player my-4 bg-surface-container border border-outline-variant rounded-lg p-4">
+  <div class="flex items-center gap-4">
+    <button class="play-shortcode w-10 h-10 rounded-full bg-primary text-black flex items-center justify-center hover:bg-primary-container transition-colors" data-src="{{ .Get "src" }}">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M232.4,114.49,88.32,26.35a16,16,0,0,0-16.2-.3A15.86,15.86,0,0,0,64,39.87V216.13A15.94,15.94,0,0,0,80,232a16.07,16.07,0,0,0,8.36-2.35L232.4,141.51a15.81,15.81,0,0,0,0-27ZM80,215.94V40l143.83,88Z"/></svg>
+    </button>
+    <audio class="shortcode-audio" src="{{ .Get "src" }}" preload="metadata"></audio>
+    <div class="flex-1">
+      <div class="text-sm text-on-surface-variant">{{ path.Base (.Get "src") }}</div>
+    </div>
+  </div>
+</div>

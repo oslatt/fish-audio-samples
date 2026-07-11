@@ -1,0 +1,19 @@
+{{ define "main" }}
+<main class="pt-20 pb-28 px-4 md:px-8 max-w-[1920px] mx-auto w-full">
+  {{ partial "search-bar.html" . }}
+
+  <!-- Prompt Grid -->
+  <div id="grid-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-5">
+    {{ range where .Site.RegularPages "Section" "prompts" }}
+      {{ partial "prompt-card.html" . }}
+    {{ end }}
+  </div>
+
+  <!-- Empty State -->
+  <div id="empty-state" class="hidden flex flex-col items-center justify-center py-20 text-on-surface-variant">
+    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 256 256" class="mb-4 opacity-50"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/></svg>
+    <p class="text-lg">No prompts found matching your search.</p>
+    <button id="reset-search" class="mt-4 px-4 py-2 rounded-full border border-primary text-primary hover:bg-primary hover:text-black transition-all duration-300 text-sm">Reset Search</button>
+  </div>
+</main>
+{{ end }}
