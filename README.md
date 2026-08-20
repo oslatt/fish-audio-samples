@@ -16,4 +16,4 @@ Open a [prompt submission issue](/issues/new/choose) using the issue form:
 hugo new prompts/my-prompt.md
 ```
 
-Drop `my-prompt.mp3` alongside it. Edit the frontmatter (tags, model, contributor, etc.). Everything is a tag — no separate categories or emotions.
+Drop `my-prompt.mp3` alongside it. Edit the frontmatter (tags, model, contributor, etc.). Everything is a tag - no separate categories or emotions.

@@ -10,9 +10,17 @@ body:
 
         Thanks for contributing to the Fish Audio Prompt Library.
 
-        1. Fill in every required field below.
-        2. **Drag your audio file (mp3/wav/ogg/m4a/flac) directly into the body of this form** — it will appear as an attachment link above/below these fields.
-        3. Submit. An automated pipeline will review, upload your audio to our CDN, and open a pull request with your entry.
+        1. Attach your audio file (mp3/wav/ogg/m4a/flac) using the **Audio file** field below. You can also drag it anywhere into the form body.
+        2. Fill in every required field below.
+        3. Submit. An automated pipeline will review it, upload your audio to the CDN, and open a pull request with your entry.
+
+  - type: upload
+    id: audio
+    attributes:
+      label: Audio file
+      description: Drag your audio file (mp3/wav/ogg/m4a/flac) here.
+    validations:
+      required: true
 
   - type: input
     id: title
@@ -64,21 +72,21 @@ body:
   - type: input
     id: top_p
     attributes:
-      label: Top P
+      label: Top P (optional)
       description: Sampling parameter used. Leave empty to use the default `0.95`.
       placeholder: "0.95"
 
   - type: input
     id: temperature
     attributes:
-      label: Temperature
+      label: Temperature (optional)
       description: Sampling parameter used. Leave empty to use the default `0.8`.
       placeholder: "0.8"
 
   - type: dropdown
     id: nsfw
     attributes:
-      label: NSFW
+      label: NSFW (optional)
       description: Mark this prompt as 18+ content.
       options:
         - "No"
