@@ -49,6 +49,91 @@
 }
 
 .bg-black { background-color: #000000; }
+
+/* Ambient background glow - smooth animated color blobs */
+.bg-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bg-glow-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(110px);
+  mix-blend-mode: screen;
+  will-change: transform;
+  opacity: 0.45;
+}
+.blob-a {
+  width: 24vw;
+  height: 24vw;
+  left: -4vw;
+  top: -8vh;
+  background: #a8a8a8;
+  animation: blobDriftA 26s ease-in-out infinite alternate;
+}
+.blob-b {
+  width: 19vw;
+  height: 19vw;
+  left: 34vw;
+  top: 22vh;
+  background: #ffffff;
+  animation: blobDriftB 32s ease-in-out infinite alternate;
+}
+.blob-c {
+  width: 21vw;
+  height: 21vw;
+  right: -4vw;
+  bottom: -6vh;
+  background: #808080;
+  animation: blobDriftC 29s ease-in-out infinite alternate;
+}
+
+@keyframes blobDriftA {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(14vw, 10vh) scale(1.2);
+  }
+  100% {
+    transform: translate(4vw, 16vh) scale(0.9);
+  }
+}
+@keyframes blobDriftB {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-10vw, 14vh) scale(1.25);
+  }
+  100% {
+    transform: translate(-20vw, 2vh) scale(0.95);
+  }
+}
+@keyframes blobDriftC {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-12vw, -16vh) scale(1.15);
+  }
+  100% {
+    transform: translate(6vw, -6vh) scale(0.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-glow-blob {
+    animation: none;
+  }
+}
+
+/* Keep page content below the ambient glow:
+   NOTE: main must NOT create a stacking context (no position/z-index) or the
+   active card + popup (z-40) would be trapped inside it, below .bg-glow (z-35). */
 .bg-surface { background-color: var(--color-surface); }
 .bg-surface-variant { background-color: var(--color-surface-variant); }
 .bg-surface-container { background-color: var(--color-surface-container); }

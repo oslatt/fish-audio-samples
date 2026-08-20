@@ -4,6 +4,11 @@
   {{ partial "head.html" . }}
 </head>
 <body class="bg-black text-on-surface antialiased min-h-screen selection:bg-primary-container selection:text-black relative">
+  <div class="bg-glow" aria-hidden="true">
+    <span class="bg-glow-blob blob-a"></span>
+    <span class="bg-glow-blob blob-b"></span>
+    <span class="bg-glow-blob blob-c"></span>
+  </div>
   {{ block "main" . }}{{ end }}
   {{ partial "nav-island.html" . }}
   {{ partial "scripts.html" . }}
