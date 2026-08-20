@@ -6,12 +6,14 @@
 {{ $tags := "" }}
 {{ with .Params.tags }}{{ $tags = delimit . "," }}{{ end }}
 
-{{/* Audio: use frontmatter if set, otherwise default to <filename>.mp3 */}}
-{{ $audioFile := .Params.audio }}
-{{ $audio := "" }}
-{{ with .File }}
-  {{ if not $audioFile }}{{ $audioFile = printf "%s.mp3" .BaseFileName }}{{ end }}
-  {{ $audio = printf "/prompts/%s" $audioFile }}
+{{/* Audio: prefer remote audio_url, else frontmatter, else default to <filename>.mp3 */}}
+{{ $audio := .Params.audio_url }}
+{{ if not $audio }}
+  {{ $audioFile := .Params.audio }}
+  {{ with .File }}
+    {{ if not $audioFile }}{{ $audioFile = printf "%s.mp3" .BaseFileName }}{{ end }}
+    {{ $audio = printf "/prompts/%s" $audioFile }}
+  {{ end }}
 {{ end }}
 {{ $sizeMB := "2.3" }}
 

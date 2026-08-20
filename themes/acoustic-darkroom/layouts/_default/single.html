@@ -1,8 +1,11 @@
 {{ define "main" }}
-{{/* Audio: use frontmatter if set, otherwise default to <filename>.mp3 */}}
-{{ $audioFile := .Params.audio }}
-{{ if not $audioFile }}{{ $audioFile = printf "%s.mp3" .File.BaseFileName }}{{ end }}
-{{ $audio := printf "/prompts/%s" $audioFile }}
+{{/* Audio: prefer remote audio_url, else frontmatter, else default to <filename>.mp3 */}}
+{{ $audio := .Params.audio_url }}
+{{ if not $audio }}
+  {{ $audioFile := .Params.audio }}
+  {{ if not $audioFile }}{{ $audioFile = printf "%s.mp3" .File.BaseFileName }}{{ end }}
+  {{ $audio = printf "/prompts/%s" $audioFile }}
+{{ end }}
 
 <main class="pt-20 pb-28 px-4 md:px-8 max-w-3xl mx-auto w-full">
   <div class="mb-8">

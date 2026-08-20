@@ -8,7 +8,7 @@
     "tags" .Params.tags
     "duration" .Params.duration
     "url" .RelPermalink
-    "audio" (.Params.audio | default (printf "%s.mp3" .File.BaseFileName))
+    "audio" (.Params.audio_url | default (.Params.audio | default (printf "%s.mp3" .File.BaseFileName)))
   }}
   {{ with .Params.metadata }}
     {{ $item = merge $item (dict "nsfw" .nsfw "prompt" .prompt_text) }}

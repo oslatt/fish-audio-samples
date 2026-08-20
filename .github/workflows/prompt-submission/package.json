@@ -1,0 +1,12 @@
+{
+  "name": "prompt-submission",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Processes prompt-submission issues: downloads audio, uploads to R2, opens a PR.",
+  "main": "index.js",
+  "dependencies": {
+    "@actions/github": "^6.0.0",
+    "@aws-sdk/client-s3": "^3.637.0",
+    "js-yaml": "^4.1.0"
+  }
+}
